@@ -1,0 +1,12 @@
+[Unit]
+Description=Start Scripts
+StopWhenUnneeded=yes
+Before=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/systemd/scripts/startup.sh
+
+[Install]
+WantedBy=multi-user.target
