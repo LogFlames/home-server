@@ -10,7 +10,3 @@ elif [[ $option == 'long' ]]; then
 else
 	echo Please enter either \'press\' or \'long\'
 fi
-
-  #\
-  #-H 'Content-Type: application/x-www-form-urlencoded' \
-  #-H 'Origin: null' \
