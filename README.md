@@ -10,3 +10,5 @@ autostart.service placed in /etc/systemd/system
 
 systemctl enable autostart
 '''
+
+docker should restart by itself, both ```docker-compose up -d``` and the ```./pihole.sh```.
