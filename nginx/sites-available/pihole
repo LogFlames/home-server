@@ -15,7 +15,13 @@ server {
 server {
     listen 80;
     server_name pihole.snabbaschemat.se;
-    return 302 https://$server_name$request_uri;
+
+    location /.well-known {
+        root /var/www/acme-challenges;
+        sendfile on;
+    }
+
+    location / {
+        return 301 https://$server_name$request_uri;
+    }
 }
-
-

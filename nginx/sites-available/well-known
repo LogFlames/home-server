@@ -2,9 +2,8 @@
 server {
     listen 80;
     server_name snabbaschemat.se;
-    location / {
+    location /.well-known {
         root /var/www/acme-challenges;
         sendfile on;
-        index index.html;
     }
 }

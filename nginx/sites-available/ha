@@ -1,0 +1,36 @@
+server {
+    listen 443 ssl;
+    
+    server_name ha.snabbaschemat.se;
+
+    ssl_certificate /etc/ssl/ha.snabbaschemat.se.crt;
+    ssl_certificate_key /etc/ssl/ha.snabbaschemat.se.key;
+
+    location / {
+        proxy_pass http://127.0.0.1:8123;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    location /api/websocket {
+        proxy_pass http://127.0.0.1:8123;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+
+    server_name ha.snabbaschemat.se;
+
+    location /.well-known {
+        root /var/www/acme-challenges;
+        sendfile on;
+    }
+
+    location / {
+        return 301 https://$server_name$request_uri;
+    }
+}
