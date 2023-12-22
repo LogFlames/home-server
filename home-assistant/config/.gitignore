@@ -1,2 +1,8 @@
 __pycache__/
+.storage/
+.ssh/
+.cloud/
+.google.token
+home-assistant.log*
+id_rsa*
 secrets.yaml
