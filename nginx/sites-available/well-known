@@ -1,0 +1,10 @@
+# This is not needed if snabbaschemat config is up, since it listenes to 0.0.0.0:80
+server {
+    listen 80;
+    server_name snabbaschemat.se;
+    location / {
+        root /var/www/acme-challenges;
+        sendfile on;
+        index index.html;
+    }
+}

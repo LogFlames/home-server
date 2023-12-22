@@ -1,0 +1,29 @@
+server {
+    listen 443 ssl;
+    
+    server_name snabbaschemat.se;
+
+    ssl_certificate /etc/ssl/snabbaschemat.se.crt;
+    ssl_certificate_key /etc/ssl/snabbaschemat.se.key;
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+
+    server_name snabbaschemat.se;
+
+    location /.well-known {
+        root /var/www/acme-challenges;
+        sendfile on;
+        autoindex on;
+    }
+
+    location / {
+        return 302 https://$server_name$request_uri;
+    }
+}
